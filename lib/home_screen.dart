@@ -32,7 +32,25 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Expanded(
               child: MessagesScreen(messages: messages),
-            ),Container(),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              color: Colors.deepPurple,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.send),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
