@@ -1,3 +1,5 @@
+import 'package:dialog_flowtter/dialog_flowtter.dart';
+import 'package:fitness_bot/messages_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -8,8 +10,32 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late DialogFlowtter dialogFlowtter;
+  final TextEditingController _controller = TextEditingController();
+
+  List<Map<String, dynamic>> messages = [];
+
+  @override
+  void initState() {
+    DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Fitness Bot'),
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: MessagesScreen(messages: messages),
+            ),Container(),
+          ],
+        ),
+      ),
+    );
   }
 }
