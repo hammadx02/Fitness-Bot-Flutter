@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Fitness Bot'),
         centerTitle: true,
       ),
+      // ignore: avoid_unnecessary_containers
       body: Container(
         child: Column(
           children: [
@@ -36,7 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              color: Colors.deepPurple,
+              decoration: const BoxDecoration(
+                color:  Color(0XFF1968FF),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+              ),
               child: Row(
                 children: [
                   Expanded(
@@ -50,7 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       sendMessage(_controller.text);
                       _controller.clear();
                     },
-                    icon: const Icon(Icons.send),
+                    icon: const Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),

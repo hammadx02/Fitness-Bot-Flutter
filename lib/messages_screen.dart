@@ -37,9 +37,9 @@ class _MessagesScreenState extends State<MessagesScreen> {
                       widget.messages[index]['isUserMessage'] ? 20 : 0,
                     ),
                   ),
-                  color: widget.messages[index]['isUserMessag']
-                      ? Colors.grey.shade800
-                      : Colors.grey.shade900.withOpacity(0.8),
+                  color: widget.messages[index]['isUserMessage']
+                      ? const Color(0XFF1968FF)
+                      : Colors.grey.shade800.withOpacity(0.5),
                 ),
                 constraints: BoxConstraints(maxWidth: w * 2 / 3),
                 child: Text(
@@ -49,7 +49,6 @@ class _MessagesScreenState extends State<MessagesScreen> {
             ],
           ),
         );
-        // return Container();
       },
       separatorBuilder: (_, i) =>
           const Padding(padding: EdgeInsets.only(top: 10)),

@@ -15,10 +15,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Fitness Bot',
       theme: ThemeData(
-       brightness: Brightness.dark,
+        brightness: Brightness.dark,
       ),
       home: const HomeScreen(),
     );
   }
 }
-
