@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Fitness Bot'),
+        centerTitle: true,
       ),
       body: Container(
         child: Column(
@@ -34,19 +35,22 @@ class _HomeScreenState extends State<HomeScreen> {
               child: MessagesScreen(messages: messages),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               color: Colors.deepPurple,
               child: Row(
                 children: [
                   Expanded(
                     child: TextField(
                       controller: _controller,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.send),
+                    onPressed: () {
+                      sendMessage(_controller.text);
+                      _controller.clear();
+                    },
+                    icon: const Icon(Icons.send),
                   ),
                 ],
               ),
@@ -55,5 +59,28 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  sendMessage(String text) async {
+    if (text.isEmpty) {
+      ScaffoldMessenger;
+    } else {
+      //handling user message
+      setState(() {
+        addMessage(Message(text: DialogText(text: [text])), true);
+      });
+    }
+    DetectIntentResponse response = await dialogFlowtter.detectIntent(
+        queryInput: QueryInput(text: TextInput(text: text)));
+
+    if (response.message == null) return;
+    //handling dialog flow message
+    setState(() {
+      addMessage(response.message!);
+    });
+  }
+
+  addMessage(Message message, [bool isUserMessage = false]) {
+    messages.add({'message': message, 'isUserMessage': isUserMessage});
   }
 }
